@@ -4,17 +4,17 @@ import classes from "./Counter.module.css";
 
 const Counter = () => {
     const dispatch = useDispatch();
-    const counter = useSelector((state) => state.counter);
-    const show = useSelector((state) => state.showCounter);
+    //여기에서 store에 저장된 state를 읽어올 수 있음(즉 저장소에 저장된 데이터를 가지고 옴)
+    const counter = useSelector((state) => state.counter.counter); //앞의 counter은 react-redux에게 counter이라는 slice에 접근한 다는 것을 의미
+    //앞의 counter slice는 configureStore reducer가 새로만든 state -> 그 상태 slice에서 가지고 있는 프로퍼티 이름이 counter인것
+    const show = useSelector((state) => state.counter.showCounter);
 
     const incrementHandler = () => {
         dispatch(counterActions.increment()); //여기서 전체 액션 객체가 자동으로 생성됨
     };
 
     const increseHandler = () => {
-        dispatch(counterActions.increase(10)); //payload데이터를 전달해주기 위해서는 그냥 메서드에 값을 넣어서 전달해주면 됨
-        //그럼 redux toolkit는 자동으로 액션 생성자를 생성해서 redux toolkit이 새성한 type: SOME_UNIQUE_IDENTIFIER을 전달하고 인자로서 실행하고자 하는 액션 메소드에 전달한 값을 추가한다
-        //그리고 추가할 때는 필드명이 payload인 곳에 저장함(필드명을 개발자가 정하는 것 아님 -> 자동으로 저장이 되어있음)
+        dispatch(counterActions.increase(10));
     };
 
     const decrementHandler = () => {
