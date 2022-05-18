@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./CartButton.module.css";
 
-import { uiAction } from "../../store/ui-slice";
+import { uiActions } from "../../store/ui-slice";
 
 const CartButton = (props) => {
     //장바구니 버튼을 클릭하면 장바구니 영역이 보여져야 한다
@@ -16,7 +16,7 @@ const CartButton = (props) => {
     const cartQuantity = useSelector((state) => state.cart.totalQuantity);
     const toggleCartHandler = () => {
         //uiSlice 리듀서 맵에서 toggle 메소드를 작동시켜서 cartIsVisble의 상태를 변경시켜야 함
-        dispatch(uiAction.toggle()); //이렇게 하게 되면 자동으로 action객체가 생성되고 새롭게 만들어져서 해당 action이 새로운 객체로 저장됨
+        dispatch(uiActions.toggle()); //이렇게 하게 되면 자동으로 action객체가 생성되고 새롭게 만들어져서 해당 action이 새로운 객체로 저장됨
     };
     return (
         <button className={classes.button} onClick={toggleCartHandler}>
